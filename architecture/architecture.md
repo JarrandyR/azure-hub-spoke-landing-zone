@@ -26,18 +26,19 @@ This pattern is commonly used in real-world Azure environments to improve securi
 flowchart TB
     Internet((Internet))
 
-    subgraph Hub["Hub Virtual Network (10.0.0.0/16)"]
-        HubSubnet["Shared Subnet\n10.0.0.0/24"]
+    subgraph Hub["Hub VNet (10.0.0.0/16)"]
+        HubSubnet["snet-shared (10.0.0.0/24)"]
     end
 
-    subgraph Spoke["Spoke Virtual Network (10.1.0.0/16)"]
-        AppSubnet["Application Subnet\n10.1.0.0/24"]
-        NSG["Network Security Group\nAllow Hub Traffic\nDeny Internet Traffic"]
+    subgraph Spoke["Spoke VNet (10.1.0.0/16)"]
+        AppSubnet["snet-app (10.1.0.0/24)"]
+        NSG["NSG\nAllow Hub\nDeny Internet"]
     end
 
-    Internet -.->|Blocked by NSG| AppSubnet
-    HubSubnet <-->|Private VNet Peering| AppSubnet
+    Internet -.->|Blocked| AppSubnet
+    HubSubnet <-->|VNet Peering| AppSubnet
     NSG --> AppSubnet
+
 
 
 
