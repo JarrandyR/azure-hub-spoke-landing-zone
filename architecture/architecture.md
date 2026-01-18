@@ -20,7 +20,7 @@ This pattern is commonly used in real-world Azure environments to improve securi
 
 ---
 
-@'
+
 # Azure Hub-and-Spoke Network Architecture
 
 ## Logical Architecture Diagram
@@ -41,6 +41,8 @@ flowchart TB
     Internet -.->|Blocked| AppSubnet
     HubSubnet <-->|VNet Peering| AppSubnet
     NSG --> AppSubnet
+
+
 
     Component Explanation
 1. Internet
