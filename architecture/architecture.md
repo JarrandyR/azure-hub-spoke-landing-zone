@@ -20,28 +20,7 @@ This pattern is commonly used in real-world Azure environments to improve securi
 
 ---
 
-
-# Azure Hub-and-Spoke Network Architecture
-
-## Logical Architecture Diagram
-
-```mermaid
-flowchart TB
-    Internet((Internet))
-
-    subgraph Hub["Hub VNet (10.0.0.0/16)"]
-        HubSubnet["snet-shared (10.0.0.0/24)"]
-    end
-
-    subgraph Spoke["Spoke VNet (10.1.0.0/16)"]
-        AppSubnet["snet-app (10.1.0.0/24)"]
-        NSG["NSG\nAllow Hub\nDeny Internet"]
-    end
-
-    Internet -.->|Blocked| AppSubnet
-    HubSubnet <-->|VNet Peering| AppSubnet
-    NSG --> AppSubnet
-
+![alt text](image.png)
 
 
     Component Explanation
